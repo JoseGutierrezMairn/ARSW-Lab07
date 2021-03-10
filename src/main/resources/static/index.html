@@ -32,6 +32,12 @@ table th {
 		left:850px;
   		top:150px;
   	}
+	div#saveupdate{
+	position:absolute;
+		left:875px;
+  		top:460px;
+  		float:right;
+  	}
 	
 </style>
   
@@ -40,6 +46,10 @@ table th {
 <a><font size=6>Author: <input type="text" id="authorInput" value="Write an author here"><button type="button" class="favorite styled" id="getBluePrints" onclick="app.queue(authorInput.value);">Get Blueprints</button></font></a> 
 <div id="ca">
 	<canvas id="myCanvas" width="500" height="300" style="border:1px solid #000000;"></canvas>
+</div> 
+
+<div id="saveupdate">
+	<button type="button" class="btn btn-success" onclick="app.put();">Save / Update</button>
 </div> 
 <table id="tabla" style="width:45%" >
   <tr>

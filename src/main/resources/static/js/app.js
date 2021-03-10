@@ -44,6 +44,7 @@ var app = (function(){
 		
 	}
 	var queue = function(author){
+		//alert("hereim");
 		at = author;
 		mock.getBlueprintsByAuthor(at, table);
 	}
@@ -84,8 +85,6 @@ var app = (function(){
     }
 	
 	var pointerHandler = function(event){
-		currentBp.name = "nuevoNombre";
-		//alert(currentBp.points[1].x);
 		var nuevo = 
 			{
 				x: event.pageX-offset.left,
@@ -110,7 +109,10 @@ var app = (function(){
 			//author = document.getElementById("authorInput").value;
 			mock.getBlueprintsByNameAndAuthor(name,at,drawCanvas);
 		},
-		pointerInit : pointerInit
+		pointerInit : pointerInit,
+		put : function(){
+			mock.put(currentBp, queue);
+		}
 	};
 	
 })();
