@@ -4,6 +4,7 @@ var mock = apiclient;
 var app = (function(){
 	var at = null;
 	var currentBp = null;
+	var offset = null;
 	
 	var mapeo = function(lista){
 		return mapped = lista.map(function(blueprint){
@@ -67,13 +68,38 @@ var app = (function(){
 			});
 			ctx.stroke();
 	}
+	var compensar = function(obj) {
+		
+          var offsetLeft = 0;
+          var offsetTop = 0;
+          do {
+            if (!isNaN(obj.offsetLeft)) {
+                offsetLeft += obj.offsetLeft;
+            }
+            if (!isNaN(obj.offsetTop)) {
+                offsetTop += obj.offsetTop;
+            }   
+          } while(obj = obj.offsetParent );
+          return {left: offsetLeft, top: offsetTop};
+    }
 	
 	var pointerHandler = function(event){
-		alert(currentBp.points.length);
+		currentBp.name = "nuevoNombre";
+		//alert(currentBp.points[1].x);
+		var nuevo = 
+			{
+				x: event.pageX-offset.left,
+				y: event.pageY-offset.top
+			}
+		
+		currentBp.points.push(nuevo);
+		drawCanvas(currentBp);
+		
 	}
 	
 	var pointerInit = function(){
 		var canvas = document.getElementById("myCanvas");
+		offset = compensar(canvas);
 		canvas.addEventListener("pointerdown", pointerHandler, false);
 		
 	}
