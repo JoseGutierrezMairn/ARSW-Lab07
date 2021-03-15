@@ -3,24 +3,24 @@ var apimock = (function () {
     var mockdata = [];
 
     mockdata["JhonConnor"] = [
-        {
-            author: "JhonConnor",
-            name: "house",
-            points: [
-                {
-                    x: 10,
-                    y: 20
-                },
-                {
-                    x: 15,
-                    y: 25
-                },
-                {
-                    x: 45,
-                    y: 25
-                }
-            ]
-        },
+			{
+				author: "JhonConnor",
+				name: "house",
+				points: [
+					{
+						x: 10,
+						y: 20
+					},
+					{
+						x: 15,
+						y: 25
+					},
+					{
+						x: 45,
+						y: 25
+					}
+				]
+			},
         {
             author: "JhonConnor",
             name: "bike",

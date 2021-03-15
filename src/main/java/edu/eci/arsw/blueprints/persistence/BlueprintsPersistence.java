@@ -55,4 +55,7 @@ public interface BlueprintsPersistence {
      */
     public Set<Blueprint> getAllBluePrint() throws BlueprintNotFoundException;
     
+    
+    public void deleteBlueprint(String author, String name);
+    
 }

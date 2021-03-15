@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author hcadavid
  */
 @RestController
-@RequestMapping(value = "/blueprints")
+@RequestMapping(path = "/blueprints")
 public class BlueprintAPIController {
     @Autowired
     BlueprintsServices bps= null;
@@ -83,6 +83,12 @@ public class BlueprintAPIController {
             Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
         }
+    }
+    
+    @RequestMapping(path = "/{author}/{name}",method = RequestMethod.DELETE)	
+    public ResponseEntity<?> deleteBlueprint(@PathVariable ("author") String author, @PathVariable ("name") String name, @RequestBody Blueprint bp ){
+        bps.deleteBlueprint(author, name);
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }
 

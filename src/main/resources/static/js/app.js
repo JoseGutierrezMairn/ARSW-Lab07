@@ -18,10 +18,17 @@ var app = (function(){
 			alert("Author does not exist");
 		}else{
 			bps = mapeo(bps);
-			var r = bps.reduce(function(a, b){
-				
-                return a.pts + b.pts;
-            })
+			if(bps.length > 1){
+				var r = bps.reduce(function(a, b){
+					if(a.pts>0 && b.pts>0){
+						return a.pts + b.pts;
+					}
+                
+				})
+			}else{
+				var r = bps[0].pts;
+			}
+			
 		
 		$("#totalPoints").text("Total points: " + r);
 		var vpname = "Blueprint name";
@@ -51,8 +58,10 @@ var app = (function(){
 	
 	
 	var drawCanvas = function(blueprint){
+
 			currentBp = blueprint;
 			var c = document.getElementById("myCanvas");
+			document.getElementById("bpna").textContent="Current blueprint: "+currentBp.name;
 			var ctx = c.getContext("2d");
 			var dx = null;
 			var dy = null;
@@ -103,6 +112,19 @@ var app = (function(){
 		
 	}
 	
+	var addnew = function(){
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		ctx.clearRect(0, 0, 500, 300);
+		ctx.beginPath();
+		queue(at);
+	}
+	
+	var reload = function(){
+		currentBp = null;
+		queue(at);
+	}
+	
 	return{
 		queue : queue,
 		draw : function(name){
@@ -112,6 +134,23 @@ var app = (function(){
 		pointerInit : pointerInit,
 		put : function(){
 			mock.put(currentBp, queue);
+		},
+		createNewBlueprint : function(){
+			if(at != null){
+				var na = prompt("Type the blueprint name");
+				mock.create(at,na, addnew);
+			}else{
+				alert("No author specified");
+			}
+			
+		},
+		deleteBp : function(){
+			if(currentBp!= null){
+				mock.deletebp(currentBp, queue);
+			}else{
+				alert("No blueprint specified");
+			}
+			
 		}
 	};
 	
