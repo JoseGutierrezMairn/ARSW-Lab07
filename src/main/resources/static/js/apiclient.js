@@ -26,7 +26,9 @@ var apiclient = (function(){
                     reject('FAIL');
                 });
 			});
-			promise.then(callback(n.author));
+			promise.then(function(){
+				callback(n.author)
+			});
 			
 			//callback(n.author);
 			
@@ -39,6 +41,7 @@ var apiclient = (function(){
 				}
 				this.put(nueva, callback);
 		},
+		
 		deletebp : function(n, callback){
 			console.log(n);
 			var bp = JSON.stringify(n);
@@ -60,7 +63,9 @@ var apiclient = (function(){
 			$.get("http://localhost:8080/blueprints/"+bp.author, function(answ){
 				console.log(answ);
 			});
-			promise.then(callback(bp.author));
+			promise.then(function(){
+				callback(n.author)
+			});
 			
 		}
 	}
